@@ -73,5 +73,19 @@ $returnValue = $statement->execute();
 return $returnValue;
 }
 
+public function storeEmailToaken($email, $email_token)
+{
+$sql = "insert into users set email_token=? where email=?";
+$statement = $this->conn->prepare($sql);
+
+if (!$statement)
+throw new Exception($statement->error);
+
+$statement->bind_param("ss", $email_token, $email);
+$returnValue = $statement->execute();
+
+return $returnValue;
+}
+
 }
 ?>
