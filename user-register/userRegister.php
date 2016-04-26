@@ -39,9 +39,10 @@ $returnValue["message"] = "User is registered";
 echo json_encode($returnValue);
 
 // Generate a unique email confirmation token
+/*
 $emailConfirmation = new EmailConfirmation();
 $emailToken = $emailConfirmation->generateUniqueToken(16);
-
+*/
 // Store this token in our database table
 
 
