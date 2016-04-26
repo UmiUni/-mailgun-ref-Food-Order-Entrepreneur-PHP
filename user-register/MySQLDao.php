@@ -73,9 +73,9 @@ $returnValue = $statement->execute();
 return $returnValue;
 }
 
-public function storeEmailToaken($email, $email_token)
+public function storeEmailToken($email, $email_token)
 {
-$sql = "insert into users set email_token=? where email=?";
+$sql = "UPDATE users SET email_token=? where user_email=?";
 $statement = $this->conn->prepare($sql);
 
 if (!$statement)
