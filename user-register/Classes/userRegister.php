@@ -2,6 +2,7 @@
 
 require("Conn.php");
 require("MySQLDao.php");
+require("Classes/EmailConfirmation.php");
 
 $email = htmlentities($_POST["email"]);
 $password = htmlentities($_POST["password"]);
@@ -37,22 +38,17 @@ if($result)
 $returnValue["status"] = "Success";
 $returnValue["message"] = "User is registered";
 echo json_encode($returnValue);
-
 // Generate a unique email confirmation token
 $emailConfirmation = new EmailConfirmation();
 $emailToken = $emailConfirmation->generateUniqueToken(16);
 
 // Store this token in our database table
 
-
 // Prepare email message parameters like Subject, Message, From, To and etc.
-
 
 // Load up email message from an email template
 
-
 // Send out this email message to user
-
 
 return;
 }
