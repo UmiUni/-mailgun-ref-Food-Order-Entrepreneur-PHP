@@ -61,7 +61,7 @@ return $returnValue;
 
 public function registerUser($email, $password)
 {
-$sql = "insert into users set user_email=?, user_password=?";
+$sql = "INSERT INTO users SET user_email=?, user_password=?";
 $statement = $this->conn->prepare($sql);
 
 if (!$statement)

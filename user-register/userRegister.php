@@ -29,9 +29,11 @@ echo json_encode($returnValue);
 return;
 }
 
+
 $secure_password = md5($password); // I do this, so that user password cannot be read even by me
 
 $result = $dao->registerUser($email,$secure_password);
+
 
 if($result)
 {
