@@ -87,5 +87,32 @@ $returnValue = $statement->execute();
 return $returnValue;
 }
 
+public function activateEmail($email, $email_token){
+
+$sql = "SELECT email_token FROM users WHERE user_email=?";
+$statement = $this->conn->prepare($sql);
+if (!$statement) throw new Exception($statement->error);
+
+$statement->bind_param("s", $email);
+$returnValue = $statement->execute();
+$statement->bind_result($emailToken);
+While($statement->fetch()){
+}
+if (strcmp($emailToken, $email_token) == 0) {
+        $num = 1;	
+	$sql = "UPDATE users SET isEmailConfirmed=? WHERE user_email=?";
+	$statement = $this->conn->prepare($sql);
+
+	if (!$statement)
+	throw new Exception($statement->error);
+
+	$statement->bind_param("is",$num, $email);
+	$returnValue = $statement->execute();
+	return '<h1>Account is activated!</h1>';
+} else {
+	return '<h1>Account activation failed!</h1><h1>Please send email to food@jogchat.com for help.</h1>';
+}
+}
+
 }
 ?>

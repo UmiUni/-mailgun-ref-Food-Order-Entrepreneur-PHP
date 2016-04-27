@@ -26,7 +26,8 @@ class EmailConfirmation {
 		$messageDetails["from_name"] = "Food Jogchat";
 		$messageDetails["from_email"] = "food@jogchat.com";
 
-		$tokenLink = 'http://www.jogchat.com/Food-Order-Entrepreneur-PHP/user-register/confirmEmailAddress.php?token='.$emailToken;
+		$tokenLink = 'http://www.jogchat.com/Food-Order-Entrepreneur-PHP/user-register/confirmEmailAddress.php?token='.
+				$emailToken.'&email='.$messageDetails["to_email"];
 		$messageDetails["message_body"] =' 
 		<html>
 		  <body>
