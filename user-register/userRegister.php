@@ -42,26 +42,11 @@ $returnValue["message"] = "User is registered";
 $emailConfirmation = new EmailConfirmation();
 $emailToken = $emailConfirmation->generateUniqueToken(16);
 
-$returnValue["message"] = $returnValue["message"];
-
 // Store this token in our database table
 $dao->storeEmailToken($email, $emailToken);
 
-// Prepare email message parameters like Subject, Message, From, To and etc.
-$messageDetails = array();
-$messageDetails["message_subject"] = "Please confirm your email address";
-$messageDetails["to_email"] = $email;
-$messageDetails["from_name"] = "Chaoran Wang";
-$messageDetails["from_email"] = "admin@jogchat.com";
-
-
-// Load up email message from an email template
-$emailMessage = $emailConfirmation->loadEmailMessage();
-$emailMessage = str_replace("{token}", $emailToken, $emailMessage);
-$messageDetails["message_body"] = $emailMessage;
-
 // Send out this email message to user
-$emailConfirmation->sendEmailConfirmation($messageDetails);
+$emailConfirmation->sendEmailConfirmation($email, $emailToken);
 
 echo json_encode($returnValue);
 return;
