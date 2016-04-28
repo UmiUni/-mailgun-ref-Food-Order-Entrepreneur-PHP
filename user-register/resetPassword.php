@@ -27,7 +27,7 @@ return;
 if($dao->emailMatchToken($email, $emailTokenFromDatabase)) {
 // Send out this email message to user
 $emailConfirmation = new EmailConfirmation();
-$emailConfirmation->sendEmailPasswordReset($email, $emailToken);
+$emailConfirmation->sendEmailPasswordReset($email, $emailTokenFromDatabase);
 
 $returnValue["status"] = "Success";
 $returnValue["message"] = "Reset email has been sent, please check your inbox or spambox!";

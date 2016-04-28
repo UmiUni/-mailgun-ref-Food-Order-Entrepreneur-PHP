@@ -118,7 +118,7 @@ if($ret === true){
 	$statement = $this->conn->prepare($sql);
 
 	if (!$statement)
-	throw new Exception($statement->error);
+	return '<h1>Account activation failed!</h1><h1>Please send email to food@jogchat.com for help.</h1>';
 
 	$statement->bind_param("is",$num, $email);
 	$returnValue = $statement->execute();
@@ -126,6 +126,24 @@ if($ret === true){
 } else {
 	return '<h1>Account activation failed!</h1><h1>Please send email to food@jogchat.com for help.</h1>';
 }
+}
+
+public function resetPassword($email, $email_token, $password) {
+if(self::emailMatchToken($email,$email_token)) {
+
+	$sql = "UPDATE users SET user_password=? WHERE user_email=?";
+	$statement = $this->conn->prepare($sql);
+
+	if (!$statement)
+	return '<h1>Password reset failed!</h1><h1>Please send email to food@jogchat.com for help.</h1>';
+
+	$statement->bind_param("ss",$password, $email);
+	$returnValue = $statement->execute();
+	return '<h1>Password successfully reseted!</h1>';
+} else {
+	return '<h1>Invalid reset link! Please contact food@jogchat.com</h1>';
+}
+
 }
 
 }
