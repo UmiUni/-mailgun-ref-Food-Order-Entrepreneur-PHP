@@ -15,8 +15,8 @@ class EmailConfirmation {
 	}
 
 
-
-        function sendEmail($messageDetails) {	
+	/*Likely goes to spam box*/
+        function sendEmailByOwnServer($messageDetails) {	
 		$from = $messageDetails["from_name"] . " <". $messageDetails["from_email"]. ">" . "\r\n";
 		$to = $messageDetails["to_email"];
 		$subject = $messageDetails["message_subject"];
@@ -96,7 +96,7 @@ class EmailConfirmation {
 		  </body>
 		</html>
 		';
-		//self::sendEmail($messageDetails);
+		//self::sendEmailByOwnServer($messageDetails);
 		self::sendEmailByMailGun($messageDetails);
 	 }
 
@@ -123,7 +123,7 @@ class EmailConfirmation {
                   </body>
                 </html>
                 ';
-                //self::sendEmail($messageDetails);		
+                //self::sendEmailByOwnServer($messageDetails);		
                 self::sendEmailByMailGun($messageDetails);		
 	 }
 
