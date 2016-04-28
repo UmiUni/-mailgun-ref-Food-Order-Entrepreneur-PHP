@@ -1,6 +1,8 @@
 <?php
 require_once "Mail.php";
 require_once "Mail/mime.php";
+require 'mailgun-php/vendor/autoload.php';
+use Mailgun\Mailgun;
 class EmailConfirmation {
 	function generateUniqueToken($tokenLength) {
 		$characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -52,6 +54,23 @@ class EmailConfirmation {
 		$returnValue = mail($to, $subject, $messageDetails["message_body"], $headers);
 		*/	
 	}
+	
+	function sendEmailByMailGun($messageDetails) {
+
+	# Instantiate the client.
+	$mgClient = new Mailgun('key-f44fa8c4e93f293b34bffd8df6269870');
+	$domain = "jogchat.com";
+
+	# Make the call to the client.
+	$result = $mgClient->sendMessage($domain, array(
+    	'from'       => 'Food Jogchat <food@jogchat.com>',
+    	'to'         => $messageDetails['to_email'],
+    	'subject'    => $messageDetails["message_subject"],
+    	'html'       => $messageDetails["message_body"],
+    	'o:tracking' => true 
+	));
+	}
+
 	function sendEmailConfirmation($email, $emailToken) {
 
 		$randomAdd = '';
@@ -77,7 +96,8 @@ class EmailConfirmation {
 		  </body>
 		</html>
 		';
-		self::sendEmail($messageDetails);
+		//self::sendEmail($messageDetails);
+		self::sendEmailByMailGun($messageDetails);
 	 }
 
 	 function sendEmailPasswordReset($email,$emailToken) {
@@ -103,7 +123,8 @@ class EmailConfirmation {
                   </body>
                 </html>
                 ';
-                self::sendEmail($messageDetails);		
+                //self::sendEmail($messageDetails);		
+                self::sendEmailByMailGun($messageDetails);		
 	 }
 
 }
