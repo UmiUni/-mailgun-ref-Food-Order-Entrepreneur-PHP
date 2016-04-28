@@ -38,7 +38,7 @@ $result = $dao->registerUser($email,$secure_password);
 if($result)
 {
 $returnValue["status"] = "Success";
-$returnValue["message"] = "User is registered";
+$returnValue["message"] = "User is successfully registered";
 
 // Generate a unique email confirmation token
 $emailConfirmation = new EmailConfirmation();

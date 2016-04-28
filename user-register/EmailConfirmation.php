@@ -33,8 +33,10 @@ class EmailConfirmation {
 		$headers = $mime->headers($headers);
 		$body = $mime->get();
 
-		$smtp = Mail::factory('smtp', array ('host' => $host, 'auth' => true, 'username' => $username, 'password' => $password));
-		$mail = $smtp->send($to, $headers, $body);
+		//$smtp = Mail::factory('smtp', array ('host' => $host, 'auth' => true, 'username' => $username, 'password' => $password));
+		//$mail = $smtp->send($to, $headers, $body);
+		$mail = Mail::factory('mail');
+		$mail->send($to, $headers, $body);
 		/*		
 		$headers = array ('From' => $from, 'To' => $to, 'Subject' => $subject);
 		$smtp = Mail::factory('smtp', array ('host' => $host, 'auth' => true, 'username' => $username, 'password' => $password));

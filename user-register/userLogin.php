@@ -22,12 +22,11 @@ $userDetails = $dao->getUserDetailsWithPassword($email,$secure_password);
 if(!empty($userDetails))
 {
 $returnValue["status"] = "Success";
-$returnValue["message"] = "User is registered";
+$returnValue["message"] = "Logged in successfully!";
 echo json_encode($returnValue);
 } else {
-
-$returnValue["status"] = "error";
-$returnValue["message"] = "User is not found";
+$returnValue["status"] = "Error";
+$returnValue["message"] = "Email is not found or password is incorrect!";
 echo json_encode($returnValue);
 }
 
