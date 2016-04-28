@@ -53,7 +53,7 @@ class EmailConfirmation {
 	function sendEmailConfirmation($email, $emailToken) {
 
 		$randomAdd = '';
-		$num = rand(1, 10);
+		$num = rand(5, 20);
 		for ($x = 0; $x <= $num; $x++) {
 		 $randomAdd = $randomAdd.'*';
 		}
@@ -80,7 +80,7 @@ class EmailConfirmation {
 
 	 function sendEmailPasswordReset($email,$emailToken) {
 		$randomAdd = ''; 
-                $num = rand(1, 10);
+                $num = rand(5, 20);
                 for ($x = 0; $x <= $num; $x++) {
                  $randomAdd = $randomAdd.'*';
                 }   
@@ -103,7 +103,6 @@ class EmailConfirmation {
                 ';
                 self::sendEmail($messageDetails);		
 	 }
-
 
 }
 ?>

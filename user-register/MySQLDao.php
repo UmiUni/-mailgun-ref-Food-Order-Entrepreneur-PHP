@@ -102,7 +102,7 @@ return $emailToken;
 }
 
 public function emailMatchToken($email, $email_token) {
-	$emailTokenFromDatabase = getEmailToken($email);
+	$emailTokenFromDatabase = self::getEmailToken($email);
 	if (strcmp($emailTokenFromDatabase, $email_token) == 0) {
 		return true;
 	}
@@ -111,7 +111,7 @@ public function emailMatchToken($email, $email_token) {
 
 
 public function activateEmail($email, $email_token){
-$ret = emailMatchToken($email,$email_token);
+$ret = self::emailMatchToken($email,$email_token);
 if($ret === true){
 	$num = 1;	
 	$sql = "UPDATE users SET isEmailConfirmed=? WHERE user_email=?";

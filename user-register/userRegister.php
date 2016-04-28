@@ -2,7 +2,7 @@
 
 require("Conn.php");
 require("MySQLDao.php");
-require("Classes/EmailConfirmation.php");
+require("EmailConfirmation.php");
 
 $email = htmlentities($_POST["email"]);
 $password = htmlentities($_POST["password"]);
