@@ -1,6 +1,6 @@
 <?php
-require_once "Mail.php";
-require_once "Mail/mime.php";
+//require_once "Mail.php";
+//require_once "Mail/mime.php";
 require 'mailgun-php/vendor/autoload.php';
 use Mailgun\Mailgun;
 class EmailConfirmation {
@@ -62,7 +62,7 @@ class EmailConfirmation {
 	$domain = "jogchat.com";
 
 	# Make the call to the client.
-	$result = $mgClient->sendMessage($domain, array(
+	$mgClient->sendMessage($domain, array(
     	'from'       => 'Food Jogchat <food@jogchat.com>',
     	'to'         => $messageDetails['to_email'],
     	'subject'    => $messageDetails["message_subject"],

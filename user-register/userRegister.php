@@ -50,6 +50,7 @@ $dao->storeEmailToken($email, $emailToken);
 // Send out this email message to user
 $emailConfirmation->sendEmailConfirmation($email, $emailToken);
 
+
 echo json_encode($returnValue);
 return;
 
